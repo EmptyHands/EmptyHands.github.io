@@ -1,0 +1,124 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+ <title>我的网页</title>  
+ <style> 
+body {
+  overflow: hidden;
+}
+h1 {  
+ font-size: 24px; /* 设置标题字体大小 */  
+ }  
+ p {  
+ font-size: 160px; /* 设置段落字体大小 */  
+ }  
+ #float-images {  
+  position: fixed; /* 固定位置 */  
+  top: 0; /* 图片距离页面顶部的位置 */  
+  left: 0; /* 图片距离页面左侧的位置 */  
+  width: 150px; /* 设置图片的宽度 */  
+  height: 3000px; /* 保持图片的原始宽高比 */  
+ }  
+ #content {  
+  margin-left: 2000px; /* 留出左侧图片的宽度和右侧图片的宽度 */  
+ }  
+ p {  
+  margin-top: 15px; /* 设置上边的边距为15像素 */  
+  margin-right: 100px; /* 设置右边的边距为30像素 */  
+  margin-bottom: 45px; /* 设置下边的边距为45像素 */  
+  margin-left: 0px; /* 设置左边的边距为60像素 */  
+ }   
+ #myImage {    
+  position: absolute;    
+  top: 50px;  /* 调整图片的位置 */    
+  left: 500px;  /* 调整图片的位置 */    
+  width: 100px; /* 调整图片的宽度 */  
+  height: auto; /* 保持图片的原始宽高比 */  
+ }  
+ 
+ #back {    
+  position: absolute;    
+  margin-top: 320px;  /* 调整图片的位置 */    
+  left: 30px;  /* 调整图片的位置 */    
+ } 
+ #next {    
+  position: absolute;    
+  margin-top: 310px;  /* 调整图片的位置 */    
+  right: 40px;  /* 调整图片的位置 */    
+ } 
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 50vh;
+  transform: translateY(50%);
+}
+
+.button {
+  background-color: #4CAF50;
+  color: white;
+  width: 100px;
+  height: 40px;
+  margin: 550px -50px;
+  margin-left: 400px;
+}  
+ .button.active {  
+  background-color: #f44336; /* 激活按钮颜色 */  
+ }
+ </style>  
+</head>  
+<body>  
+
+</div>  
+  
+<div id="content">  
+ <h1 style="position: absolute; top: 10px; left: 100px; font-size: 40px;">定制果树</h1>  
+ <p></p>  
+</div>
+<p style="position: absolute; top: 120px; left: 120px; font-size: 20px;">草庙子村：<br/>吉林十大“诗意乡村”之一<br/><br/><br/>马家村：<br/>气候温和，环境好
+
+</p>  
+<div id="back">    
+ <a href="buy_2.html"><img border="0" src="../img/last.png" style="width:80px;"id="back"></a> </p>   
+<p style="position: absolute; top: 29px; left: 650px; font-size: 20px;"><br/><br/><br/><br/><br/></p>
+</div> 
+<div id="next">    
+ <a href="buy_4.html"><img border="0" src="../img/next.png" style="width:82px;"id="back"></a> </p>   
+<p style="position: absolute; top: 29px; left: 10px; font-size: 20px;"></p>
+</div> 
+
+<button type="button" onclick="displayImage(0)" class="button">草庙子村</button>
+<button type="button" onclick="displayImage(1)" class="button">马家庄</button>
+
+<img id="image" src="../img/c.png" alt="Image placeholder" style="width: 500px; height: auto; position: absolute; top: 70px; left: 450px; "> <!-- 设置默认占位符图片的大小和位置 -->
+
+<script>
+var previousButton = null; // 用于存储上一个按钮的引用
+
+function displayImage(imageIndex) {
+    var imageElement = document.getElementById('image');
+    if (previousButton !== null) {
+        previousButton.classList.remove("active"); // 移除上一个按钮的激活样式
+    }
+    
+    if (imageIndex === 0) {
+        imageElement.src = '../img/c.png'; // 替换为您的图片1路径
+        imageElement.style.width = "500px"; // 设置图片宽度
+        imageElement.style.height = "auto"; // 设置图片高度
+        imageElement.style.left = "450px"; // 设置图片左侧位置
+        imageElement.style.top = "70px"; // 设置图片顶部位置
+    } else if (imageIndex === 1) {
+        imageElement.src = '../img/m.png'; // 替换为您的图片2路径
+        imageElement.style.width = "500px"; // 设置图片宽度
+        imageElement.style.height = "auto"; // 设置图片高度
+        imageElement.style.left = "450px"; // 清除图片左侧位置
+        imageElement.style.top = "60px"; // 清除图片顶部位置
+    }
+    
+    previousButton = event.target; // 保存当前按钮的引用
+    previousButton.classList.add("active"); // 添加当前按钮的激活样式
+}
+</script>
+
+</body>  
+</html>

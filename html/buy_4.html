@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>美观的输入框</title>
+  <style>
+    #float-images {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 1500px;
+      height: 3000px;
+      z-index: -1; /* 将图片的层级设置为较低的值 */
+    }
+
+    #back {
+      position: absolute;
+      margin-top: 80px;
+      left: 120px;
+    }
+
+    #next {
+      position: absolute;
+      margin-top: 70px;
+      right: 230px;
+    }
+
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 500px;
+    }
+
+    .input-box {
+      width: 300px;
+      padding: 10px;
+      margin-bottom: 70px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="float-images">
+    <img src="../img/T_1.jpg" align="左侧图片" style="width: 27vh; height: 100vh;">
+  </div>
+  <div class="input-container">
+    <input type="text" class="input-box" placeholder="请输入您的称呼">
+    <input type="email" class="input-box" placeholder="请输入您的邮箱">
+  </div>
+  <div id="back">
+    <a href="buy_3.html"><img border="0" src="../img/last.png" style="width:80px;" id="back"></a>
+  </div>
+  <div id="next">
+    <a href="buy_5.html"><img border="0" src="../img/next.png" style="width:82px;" id="back"></a>
+  </div>
+</body>
+</html>
