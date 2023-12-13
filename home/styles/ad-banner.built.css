@@ -1,0 +1,182 @@
+/* fixed CN geo bar*/
+/* no ac-localeswitcher and no ac-gn-segmentbar US help fixed in ac library but resize small ad height 44px*/
+/* next is CN fixed.*/
+
+/* override*/
+html.js,html.no-js {
+    margin-top: 0 !important;
+}
+
+/* CN use fixed style override absolute*/
+#ac-localeswitcher{
+    z-index:10001!important;
+}
+html.ac-ls-visible #ac-localeswitcher{
+    position: fixed !important;
+    z-index:10001!important;
+}
+
+html.ac-ls-visible #globalnav{
+    position: fixed !important;
+}
+
+html.ac-ls-visible.ac-ls-cn-hp .adv-wrapper{
+    position: fixed;
+}
+
+.globalmessage-segment-visible .adv-wrapper{
+    position: fixed !important;
+}
+
+/* ad bar height 40px but small 44px*/
+html #globalnav{
+    top: 40px
+}
+
+@media only screen and (max-width: 767px) {
+    html #globalnav{
+        top: 44px
+    }
+}
+
+html{
+    --global-nav-ad-bar-height: 40px;
+}
+
+@media only screen and (max-width: 767px) {
+    html{
+        --global-nav-ad-bar-height: 44px ;
+    }
+}
+
+
+/* first. only show ac-localeswitcher. (CN ad bar under ac-localeswitcher) */
+
+html.ac-ls-visible.ac-ls-cn-hp .adv-wrapper{
+    top: 70px !important;
+}
+@media only screen and (max-width: 734px){
+    html.ac-ls-visible.ac-ls-cn-hp .adv-wrapper{
+        top: 135px !important;
+    }
+}
+
+
+/* second. only show ac-gn-segmentbar (CN ad-bar and ac-gn-segmentbar together inline)  */
+html.globalmessage-segment-visible #globalmessage-segment{
+    top: 0;
+}
+
+@media only screen and (min-width: 833px) {
+    html.globalmessage-segment-visible #globalnav {
+        top: 40px;
+    }
+}
+
+@media only screen and (max-width: 833px) {
+    html.globalmessage-segment-visible #globalnav {
+        top: 44px;
+    }
+}
+
+@media only screen and (max-width: 833px) {
+    html.globalmessage-segment-visible #globalnav ~ .globalnav-blur {
+        top: 44px;
+    }
+}
+
+@media only screen and (min-width: 833px) {
+    html:not(.aos).globalmessage-segment-visible:not(.ac-ls-visible) {
+        --global-nav-collective-height: 84px;
+    }
+}
+
+@media only screen and (max-width: 833px) {
+    html:not(.aos).globalmessage-segment-visible:not(.ac-ls-visible) {
+        --global-nav-collective-height: 92px;
+    }
+}
+
+html.ac-ls-visible.globalmessage-segment-visible footer{
+    top: 0px;
+}
+
+/*third. both ac-localeswitcher and ac-gn-segmentbar show (CN fixed ac-gn-blur cuase ad-bar and ac-gn-segmentbar together inline need't count ad bar height)*/
+@media only screen and (max-width: 833px){
+    .globalnav-blur{
+        top: 40px;
+    }
+}
+
+@media only screen and (max-width: 833px) {
+    html.ac-ls-visible.globalmessage-segment-visible #globalnav ~ .globalnav-blur{
+        top: 179px;
+    }
+}
+
+@media only screen and (max-width: 320px) {html[lang=zh-CN] br.hide-for-xsmall {display: none}}
+
+
+/* 767px - 735px AD missing */
+@media screen and (max-width: 767px) and (min-width: 735px) {
+    html.ac-ls-visible.ac-ls-cn-hp .adv-wrapper {
+        top: 135px !important;
+    }
+}
+@media only screen and (max-width: 833px) {
+    html[lang=zh-CN].ac-ls-visible .adv-wrapper {
+        top: 135px !important;
+    }
+}
+
+html[lang=zh-CN].ac-ls-visible.ac-ls-cn-hp.globalmessage-segment-visible .ac-nav-overlap #main, html[lang=zh-CN].ac-ls-visible.ac-ls-cn-hp.globalmessage-segment-visible .ac-nav-overlap .main {
+    margin-top: -40px;
+}
+
+@media only screen and (max-width: 833px) {
+    html[lang=zh-CN].ac-ls-visible.ac-ls-cn-hp.globalmessage-segment-visible .ac-nav-overlap #main, html[lang=zh-CN].ac-ls-visible.ac-ls-cn-hp.globalmessage-segment-visible .ac-nav-overlap .main {
+        margin-top: -40px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    html[lang=zh-CN].ac-ls-visible.ac-ls-cn-hp.globalmessage-segment-visible .ac-nav-overlap #main, html[lang=zh-CN].ac-ls-visible.ac-ls-cn-hp.globalmessage-segment-visible .ac-nav-overlap .main {
+        margin-top: -44px;
+    }
+}
+
+.main .footnote{
+    font-size: 1em;
+    top: 0em;
+}
+
+.main [data-module-template="heroes"] [data-unit-id] .unit-wrapper sup a:not(.unit-link):hover {
+    text-decoration: none;
+}
+
+/*cny-gift-guide*/
+[data-layout-name$="-cny"][data-segment-code] [data-unit-id="cny-gift-guide"] {
+    display: block;
+}
+
+/* 20230207 fixed qa rdar */
+#globalnav{
+    top: 40px!important
+}
+@media only screen and (max-width: 767px) {
+    #globalnav{
+        top: 44px!important
+    }
+}
+html.ac-ls-visible.ac-gn-segmentbar-visible #globalnav , html.ac-ls-visible #globalnav{
+    top: 110px!important
+}
+@media only screen and (max-width: 833px) {
+    html.ac-ls-visible.ac-gn-segmentbar-visible #globalnav , html.ac-ls-visible #globalnav{
+        top: 175px!important
+    }
+}
+@media only screen and (max-width: 767px) {
+    html.ac-ls-visible.ac-gn-segmentbar-visible #globalnav , html.ac-ls-visible #globalnav{
+        top: 179px!important
+    }
+}

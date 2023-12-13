@@ -1,0 +1,39 @@
+/* Fix Celebrating Steve AD */
+
+html div.adv-wrapper {
+	position:fixed
+}
+#ac-localeswitcher{
+    z-index: 10001!important;
+}
+html div.adv-wrapper {
+	margin-top: 0px !important;
+	top:0px !important
+}
+
+html.ac-ls-visible.ac-ls-cn-hp .main .section-hero .note-container{
+    margin-top: -138px;
+}
+
+html.ac-gn-segmentbar-visible.ac-ls-visible.ac-ls-cn-hp .main .section-hero .note-container{
+    margin-top: -98px;
+}
+
+html.ac-gn-segmentbar-visible .main .section-hero .note-container{
+    margin-top: -60px;
+}
+
+@media only screen and (max-width: 734px) {
+    html.ac-ls-visible .globalnav-blur {
+        top: 179px;
+    }
+
+}
+
+@media (max-height: 500px) {
+    .section-hero .intro-container .copy-block {
+        top: 44px;
+    }
+}
+
+/* Fix Celebrating Steve AD END */
