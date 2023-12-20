@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>buy</title>
+  <style>
+body {
+  background-image: url('../img/background3.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+    .image-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .overlay-image1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.5s, transform 0.5s;
+      transform: translateY(50%);
+    }
+    .overlay-image2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.5s, transform 0.5s;
+      transform: translateY(0%);
+    }
+    .image-container:hover .overlay-image1 {
+      opacity: 1;
+      transform: translateY(-50%);
+    }
+    .image-container:hover .overlay-image2 {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+    .image-container:hover img[src="last.png"] {
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    /* 第一个动画部分的位置 */
+    .animation-container-1 {
+      position: absolute;
+      top: 50%;
+      left: 30%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* 第二个动画部分的位置 */
+    .animation-container-2 {
+      position: absolute;
+      top: 50%;
+      left: 70%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* 第三个动画部分的位置 */
+    /* 请在这里添加注释，标注出定义位置的代码 */
+    .animation-container-3 {
+      position: absolute;
+      top: 20%; /* 设置新动画容器的顶部位置 */
+      left: 50%; /* 设置新动画容器的左侧位置 */
+      transform: translate(-50%, -50%); /* 设置新动画容器的水平和垂直居中 */
+    }
+  </style>
+</head>
+<body >
+  <div class="animation-container-1">
+    <div class="image-container">
+      <img src="../img/buy_3_left_last.png" alt="Original Image" width="350" height="350">
+      <a href="buy_4.html">
+      <img src="../img/buy_3_left_next.png" alt="Overlay Image" class="overlay-image1" width="350" height="350">
+    </a>
+    </div>
+  </div>
+
+  <div class="animation-container-2">
+    <div class="image-container">
+        <img src="../img/buy_3_right_last.png" alt="Original Image" width="350" height="350">
+      <a href="buy_4.html">
+        <img src="../img/buy_3_right_next.png" alt="Overlay Image" class="overlay-image1" width="350" height="350">
+      </a>
+    </div>
+  </div>
+
+  <div class="animation-container-3">
+    <div class="image-container">
+        <img src="../img/back_last.png" alt="Original Image" width="88" height="88">
+        <a href="../index.html">
+      <img src="../img/back_next.png" alt="Overlay Image" class="overlay-image2" width="88" height="88">
+    </a>
+    </div>
+  </div>
+
+  <script>
+    function configureAnimation1(containerClass) {
+      var imageContainers = document.querySelectorAll('.' + containerClass + ' .image-container');
+      var overlayImages = document.querySelectorAll('.' + containerClass + ' .overlay-image1');
+      var originalImages = document.querySelectorAll('.' + containerClass + ' img[src="../img/buy_3_left_last.png"]');
+
+      imageContainers.forEach(function (imageContainer, index) {
+        imageContainer.addEventListener('mouseenter', function () {
+          overlayImages[index].style.opacity = 1;
+          overlayImages[index].style.transform = 'translateY(-0%)';
+          originalImages[index].style.opacity = 0;
+        });
+
+        imageContainer.addEventListener('mouseleave', function (){
+          overlayImages[index].style.opacity = 0;
+          overlayImages[index].style.transform = 'translateY(50%)';
+          originalImages[index].style.opacity = 1;
+        });
+      });
+    }
+    function configureAnimation2(containerClass) {
+      var imageContainers = document.querySelectorAll('.' + containerClass + ' .image-container');
+      var overlayImages = document.querySelectorAll('.' + containerClass + ' .overlay-image1');
+      var originalImages = document.querySelectorAll('.' + containerClass + ' img[src="../img/buy_3_right_last.png"]');
+
+      imageContainers.forEach(function (imageContainer, index) {
+        imageContainer.addEventListener('mouseenter', function () {
+          overlayImages[index].style.opacity = 1;
+          overlayImages[index].style.transform = 'translateY(-0%)';
+          originalImages[index].style.opacity = 0;
+        });
+
+        imageContainer.addEventListener('mouseleave', function (){
+          overlayImages[index].style.opacity = 0;
+          overlayImages[index].style.transform = 'translateY(50%)';
+          originalImages[index].style.opacity = 1;
+        });
+      });
+    }
+    function configureAnimation3(containerClass) {
+  var imageContainers = document.querySelectorAll('.' + containerClass + ' .image-container');
+  var overlayImages = document.querySelectorAll('.' + containerClass + ' .overlay-image2');
+  var originalImages = document.querySelectorAll('.' + containerClass + ' img[src="../img/back_last.png"]');
+
+  imageContainers.forEach(function (imageContainer, index) {
+    imageContainer.addEventListener('mouseenter', function () {
+      overlayImages[index].style.opacity = 1;
+      overlayImages[index].style.transform = 'translateY(0%)';
+      originalImages[index].style.opacity = 0;
+    });
+
+    imageContainer.addEventListener('mouseleave', function () {
+      overlayImages[index].style.opacity = 0;
+      overlayImages[index].style.transform = 'translateY(0%)';
+      originalImages[index].style.opacity = 1;
+    });
+  });
+}
+    configureAnimation1('animation-container-1');
+    configureAnimation2('animation-container-2');
+    configureAnimation3('animation-container-3'); // 配置第三个动画容器
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>美观的输入框</title>
+  <style>
+    body {
+      background-image: url('../img/background4.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start; /* 左对齐 */
+      height: 80vh; /* 使用视口高度来填充整个屏幕 */
+      padding: 2%; /* 添加适当的内边距 */
+    }
+
+    .input-box {
+      width: 250px; /* 框铺满整个容器 */
+      padding: 10px;
+      margin-bottom: 70px; /* 调整输入框之间的垂直间距 */
+      border: 2px solid rgb(17,21,30);
+      border-radius: 5px;
+      font-size: 16px;
+      outline: none;
+      color: white;
+      background-color:rgb(17,21,30) ;
+      
+    }
+    #next {
+      position: fixed;
+      bottom: 2%;
+      right: 2%;
+    }  
+  </style>
+</head>
+<body>
+  <div class="input-container">
+    <input type="text" class="input-box" placeholder="请输入您的称呼">
+    <input type="email" class="input-box" placeholder="请输入您的邮箱">
+  </div>
+  <div id="next">
+    <a href="buy_5.html"><img border="0" src="../img/ok.png" style="width:82px;" alt="back"></a>
+  </div>
+</body>
+</html>

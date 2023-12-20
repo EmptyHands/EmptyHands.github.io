@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>buy</title>
+  <style>
+body {
+  background-image: url('../img/background5.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+    .image-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .overlay-image1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.5s, transform 0.5s;
+      transform: translateY(50%);
+    }
+    .overlay-image2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.5s, transform 0.5s;
+      transform: translateY(0%);
+    }
+    .image-container:hover .overlay-image1 {
+      opacity: 1;
+      transform: translateY(-50%);
+    }
+    .image-container:hover .overlay-image2 {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+    .image-container:hover img[src="last.png"] {
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    /* 第三个动画部分的位置 */
+    /* 请在这里添加注释，标注出定义位置的代码 */
+    .animation-container-3 {
+      position: absolute;
+      bottom: 2%; /* 设置新动画容器的顶部位置 */
+      right: 0; /* 设置新动画容器的左侧位置 */
+      transform: translate(-50%, -50%); /* 设置新动画容器的水平和垂直居中 */
+    }
+  </style>
+</head>
+<body >
+<div class="animation-container-3">
+    <div class="image-container">
+        <img src="../img/buy_5_last.png" alt="Original Image" width="200px" >
+        <a href="../index.html">
+      <img src="../img/buy_5_next.png" alt="Overlay Image" class="overlay-image2" width="200px">
+    </a>
+    </div>
+  </div>
+
+  <script>
+    
+    function configureAnimation(containerClass) {
+  var imageContainers = document.querySelectorAll('.' + containerClass + ' .image-container');
+  var overlayImages = document.querySelectorAll('.' + containerClass + ' .overlay-image2');
+  var originalImages = document.querySelectorAll('.' + containerClass + ' img[src="../img/buy_5_last.png"]');
+
+  imageContainers.forEach(function (imageContainer, index) {
+    imageContainer.addEventListener('mouseenter', function () {
+      overlayImages[index].style.opacity = 1;
+      overlayImages[index].style.transform = 'translateY(0%)';
+      originalImages[index].style.opacity = 0;
+    });
+
+    imageContainer.addEventListener('mouseleave', function () {
+      overlayImages[index].style.opacity = 0;
+      overlayImages[index].style.transform = 'translateY(0%)';
+      originalImages[index].style.opacity = 1;
+    });
+  });
+}
+    configureAnimation('animation-container-3'); // 配置第三个动画容器
+  </script>
+</body>
+</html>
