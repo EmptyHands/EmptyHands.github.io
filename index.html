@@ -1,169 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <title>果树之约</title>
-  <style>
-    ::selection {
-      background-color: yellow;
-      color: black;
-    }
-    body {
-      margin: 0;
-    }
-
-    #myImageParent1 {
-      position: relative;
-    }
-
-    #myImage {
-      position: absolute;
-      top: 2%;
-      left: 70%;
-    }
-
-    #howto {
-      position: absolute;
-      top: 2%;
-      left: 80%;
-    }
-
-    #buy {
-      position: absolute;
-      top: 2%;
-      left: 90%;
-    }
-
-    #logo {
-      position: absolute;
-      top: 2%;
-      left:2%;
-    }
-
-    #imageContainer1 {
-      position: relative;
-      top: 150px;
-      left: 0;
-      right: 0;
-      z-index: -1;
-      overflow: hidden;
-    }
-    
-
-    #nextpage_1 {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    #imageContainer1 img {
-      width: 100%;
-      display: block;
-    }
-
-    #content {
-      position: absolute;
-      top: 10%;
-      left: 10%;
-      font-size: 20px;
-    }
-    #myImageParent2 {
-      position: relative;
-      height: 100%;
-    }
-    #imageContainer2 {
-      position: relative;
-      top: 170px;
-      left: 0;
-      right: 0;
-      z-index: 1;
-      overflow: hidden;
-    }
-    #imageContainer2 img {
-      width: 100%;
-      display: block;
-      z-index: 1;
-    }
-    
-    #nextpage_2 {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-    }
-
-    #section2 {
-    background-color: rgb(24, 75, 37); /* 设置背景颜色为绿色 */
-    z-index: 1;
-  }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI法律助手</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="section" id="section1">
-    <div id="myImageParent1">
-      <div id="imageContainer1">
-        <img src="img/mainpaper.jpg" alt="mainpaper">
-      </div>
+    <div class="container">
+        <h1>AI法律助手</h1>
+        <div class="chat-container">
+            <div id="chat-messages"></div>
+            <div class="input-container">
+                <textarea id="question-input" placeholder="请输入您的法律问题..."></textarea>
+                <button id="send-btn">发送</button>
+            </div>
+        </div>
     </div>
-    <div id="Introduce">
-      <a href="html/introduce_project.html"><img border="0" src="img/introduce_project.png" style="width:90px;" id="myImage"></a>
-    </div>
-    <div id="howto">
-      <a href="html/introduce_howto.html"><img border="0" src="img/howto.png" style="width:90px;" id="howto"></a>
-    </div>
-    <div id="buy">
-      <a href="html/buy_1.html"><img border="0" src="img/buy.png" style="width:90px;" id="buy"></a>
-    </div>
-    <div id="logo">
-      <img src="img/logo.png" style="width:40px;" alt="logo">
-    </div>
-    <div id="nextpage_1">
-      <img src="img/nextpage_1.png" style="width:120px;" alt="nextpage_1">
-    </div>
-    <div id="content">
-      <p><br/><br/><br/><br/></p>
-    </div>
-  </div>
-  <div class="section" id="section2">
-    <h1></h1>
-    <p></p>
-    
-    <div id="myImageParent2">
-      <div id="imageContainer2">
-        <img src="img/flf.png" alt="flf">
-      </div>
-      <div id="nextpage_2">
-        <img src="img/nextpage_2.png" style="width:120px;" alt="nextpage_2">
-      </div>
-    </div>
-    
-    
-  </div>
-  
-  <div class="section" id="section3">
-    <h1></h1>
-    <p></p>
-    <style>
-      #section3 {
-  background-image: url("img/wergood.jpg");
-  background-size: 100% 100%;
-  background-position: center;
-}
-    </style>
-  </div>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.19/jquery.scrollify.min.js"></script>
-  <script>
-    $(function() {
-      $.scrollify({
-        section: ".section",
-        scrollSpeed: 800,
-        easing: "easeOutExpo"
-      });
-    });
-  </script>
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        const questionInput = document.getElementById('question-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        function addMessage(content, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'ai-message'}`;
+            messageDiv.textContent = content;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        async function sendQuestion() {
+            const question = questionInput.value.trim();
+            if (!question) return;
+
+            // 禁用输入和按钮
+            questionInput.disabled = true;
+            sendBtn.disabled = true;
+
+            // 显示用户问题
+            addMessage(question, true);
+            questionInput.value = '';
+
+            try {
+                const response = await fetch('/ask', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ question }),
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    addMessage(data.response);
+                } else {
+                    addMessage(`错误: ${data.error}`);
+                }
+            } catch (error) {
+                addMessage(`发生错误: ${error.message}`);
+            } finally {
+                // 重新启用输入和按钮
+                questionInput.disabled = false;
+                sendBtn.disabled = false;
+                questionInput.focus();
+            }
+        }
+
+        sendBtn.addEventListener('click', sendQuestion);
+        questionInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendQuestion();
+            }
+        });
+    </script>
 </body>
 </html>
