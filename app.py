@@ -3,6 +3,7 @@ from spark_api import main as spark_main
 import queue
 import threading
 import json
+import os
 
 app = Flask(__name__)
 
@@ -11,11 +12,11 @@ response_queue = queue.Queue()
 
 # 存储API配置
 SPARK_CONFIG = {
-    "appid": "2e92e4a4",
-    "api_secret": "MTlkYTliNDU2NjFiNjA5NDczYjU5YWNl",
-    "api_key": "74c3adf1e37e0f6ad5bded7a0b458aba",
-    "Spark_url": "wss://spark-api.xf-yun.com/v4.0/chat",
-    "domain": "4.0Ultra"
+    "appid": os.getenv('SPARK_APPID', '2e92e4a4'),
+    "api_secret": os.getenv('SPARK_API_SECRET', 'MTlkYTliNDU2NjFiNjA5NDczYjU5YWNl'),
+    "api_key": os.getenv('SPARK_API_KEY', '74c3adf1e37e0f6ad5bded7a0b458aba'),
+    "Spark_url": os.getenv('SPARK_URL', 'wss://spark-api.xf-yun.com/v4.0/chat'),
+    "domain": os.getenv('SPARK_DOMAIN', '4.0Ultra')
 }
 
 def collect_response(ws, message):
@@ -83,4 +84,5 @@ def ask():
     return jsonify({"response": full_response})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.getenv('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
